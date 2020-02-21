@@ -1,42 +1,44 @@
-import React,  { useState }from 'react';
-import logo from './logo.svg';
+import React, { useState } from "react";
 import './App.css';
+import TeamForm from './TeamForm';
 import TeamMate from './TeamMate';
-import  TeamForm from './TeamForm';
-
 
 
 function App() {
-  const[teamMates, setTeamMates]= useState ([
-  {
-    id: 1,
-    title: "Devin",
-    email: "dev@gamil.com",
-    body:
-      "Web Dev "
-  }
+
+  const [players, setPlayers] = useState([
+    {
+      id: 1,
+      name: "Devin",
+      email: "DevinDcooper@gmail.com",
+        role:" Web Dev"
+    }
   ]);
-  const addNewTeamMate = teamMate => {
-    const newTeamMate = {
-      id: teamMate,
-      title: teamMate.title,
-      email: teamMate.email,
-      body: teamMate.body
+
+  const addNewPlayer = player => {
+    const newPlayer = {
+      id: player.name,
+      name: player.name,
+      email: player.email,
+      role: player.role
 
     };
+    setPlayers([...players, newPlayer])
 
-setTeamMates([...teamMates, newTeamMate]);
-
-  }
-return (
-  <div className="App">
-<h1>My Team</h1>
-<TeamForm addNewTeamMate={addNewTeamMate}/>
-<teamMate teamMate={teamMate} />
+  
+  };
 
 
-  </div>
-);
+
+  return(
+
+    <div className= "App">
+      <h1>My Team</h1>
+    <TeamForm  addNewPlayer={addNewPlayer}/>
+    <TeamMate players={players}/>
+    </div>
+  )
+
 
 
 } 

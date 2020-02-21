@@ -1,17 +1,22 @@
 import React from "react";
 
-const TeamMate = props => {
+const Players = props => {
   return (
-    <div className="TeamMate-list">
-      {props.TeamMate.map( TeamMate => (
-        <div className="TeamMate" key={TeamMate.id}>
-          <h2>{TeamMate.title}</h2>
-          <p>{TeamMate.email}</p>
-          <p>{TeamMate.body}</p>
+    <div className="team-list">
+      {props.players.map(Player => (
+        <div className="team" key={Player.id}>
+          <h2>{Player.name}</h2>
+          <p>{Player.email}</p>
+          <p>{Player.role}</p>
         </div>
       ))}
     </div>
   );
 };
 
-export default TeamMate;
+export default Players;
+
+
+
+
+

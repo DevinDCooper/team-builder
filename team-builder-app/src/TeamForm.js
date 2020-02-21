@@ -1,63 +1,58 @@
 import React, { useState } from "react";
 
-const TeamForm = props => {
+ function TeamForm(props) {
+  const [user, setUser] = useState({ name: "", email: "" , role: "" });
 
-const [teamMate, setTeamMate] = useState({
-title: "",
-body: ""
-});
-
-const handleChange = event => {
-console.log("event", event.target.value);
-console.log("name", event.target.name);
-
-
-setTeamMate({...teamMate, [event.target.name]: event.target.value });
-
-console.log("teamMate", teamMate);
-
-const submitForm = event => {
+  const handleChange = event => {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  };
+  
+  const  handleSubmit = event => {
     console.log("submitting!");
     event.preventDefault(); 
-    props.addNewTeamMate(teamMate); 
-    setTeamMate({ title: "", body: "", eamil: ""}); 
+    props.addNewPlayer(user); 
+    setUser({ name: '', email: '' , role: ''});
   };
+  return(
+    <div className ="Team-Form">
+        {console.log({ user })}
+      
+      <form onSubmit={event => handleSubmit(event)}>
+    <label>
+    Name:
+    <input type="text" 
+    placeholder="Enter Name here"
+    id= "name"
+    name="name"
+    value={user.name}
+      onChange={event => handleChange(event)}
+    />
+    </label>
+    <label>
+      Email:
+      <input type="text"
+      id= "email"
+      placeholder="Enter Email here"
+      name="email"
+      value={user.email}
+        onChange={event => handleChange(event)}
+      />
+    </label>
+    <label>
+      Role
+      <input type="text"
+      id= "role"
+      placeholder="Enter Role here"
+      name="role"
+      value={user.role}
+        onChange={event => handleChange(event)}
+      />
+    </label>
+    <button >Submit!</button>
+    </form>
 
-}
-return (
-    
-<form onSubmit= {submitForm}>
-<label htmlFor="title">Name</label>
-<input
-type="text"
-placeholder= "enter name"
-id="title"
-name="title"
-value={teamMate.title}
-onChange={handleChange}
-/>
-<label htmlFor="email">email</label>
-<input
-type="text"
-placeholder="enter email"
-id="email"
-name="email"
-value={teamMate.email}
-onChange={handleChange}
-/>
+    </div>
+  );
+ }  
 
-<label htmlFor="roll">Team roll</label>
-<textarea
-id="teamMate"
-name="body"
-placeholder="Add your Team roll"
-value={teamMate.body}
-onChange={handleChange}
-/>
-<button type="submit">Add to Team </button>
-</form>
-);
-};
-
-
-export default TeamForm;
+  export default TeamForm;
